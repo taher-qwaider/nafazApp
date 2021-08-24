@@ -1,4 +1,4 @@
-@extends('cms.parent')
+@extends('cms.parent1')
 
 @section('title','إعدادات')
 @section('page-name',$subject)
