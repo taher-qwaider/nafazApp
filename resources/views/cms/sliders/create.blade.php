@@ -7,9 +7,8 @@
 
 @section('styles')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.0/min/dropzone.min.css">
     <link rel="stylesheet" href="{{ asset('cms/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('cms/plugins/summernote/summernote-bs4.css') }}">
+
 
 @endsection
 
@@ -23,7 +22,7 @@
                     <!-- general form elements -->
                     <div class="card card-success">
                         <div class="card-header">
-                            <h3 class="card-title">إنشاء سلايدر</h3>
+                            <h3 class="card-title" dir="rtl">إنشاء سلايدر</h3>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->

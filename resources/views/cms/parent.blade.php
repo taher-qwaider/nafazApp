@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>نفاذ| @yield('title')</title>
+  <title>نفاذ | @yield('title')</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -30,6 +30,8 @@
   <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.2.1/css/bootstrap.min.css">
   <!-- Custom style for RTL -->
   <link rel="stylesheet" href="{{ asset('cms/dist/css/custom.css') }}">
+    <link rel="stylesheet" href="{{ asset('cms/plugins/toastr/toastr.min.css') }}">
+
     @yield('styles')
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -56,86 +58,19 @@
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-comments"></i>
-          <span class="badge badge-danger navbar-badge">3</span>
+{{--          <span class="badge badge-danger navbar-badge">3</span>--}}
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  Brad Diesel
-                  <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">Call me whenever you can...</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  John Pierce
-                  <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">I got your message bro</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  Nora Silvester
-                  <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">The subject goes here</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+
         </div>
       </li>
       <!-- Notifications Dropdown Menu -->
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-bell"></i>
-          <span class="badge badge-warning navbar-badge">15</span>
+{{--          <span class="badge badge-warning navbar-badge">15</span>--}}
         </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-item dropdown-header">15 Notifications</span>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-envelope mr-2"></i> 4 new messages
-            <span class="float-right text-muted text-sm">3 mins</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-users mr-2"></i> 8 friend requests
-            <span class="float-right text-muted text-sm">12 hours</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i> 3 new reports
-            <span class="float-right text-muted text-sm">2 days</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-        </div>
+
       </li>
       <li class="nav-item">
         <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#">
@@ -206,7 +141,7 @@
             </li>
             <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
-                    <i class="fas fa-list-ul"></i>
+                    <i class="fas fa-cog"></i>
                     <p>
                         إعدادات
                         <i class="fas fa-angle-left right"></i>
@@ -238,7 +173,7 @@
                     </li>
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
-                            <i class="fas fa-list-ul"></i>
+                            <i class="fas fa-phone-square-alt"></i>
                             <p>
                                 اتصل بنا
                                 <i class="fas fa-angle-left right"></i>
@@ -291,9 +226,7 @@
 
     <!-- Main content -->
     <section class="content">
-      <div class="container-fluid">
         @yield('content')
-      </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
   </div>
@@ -327,29 +260,34 @@
 <!-- Bootstrap 4 -->
 <script src="{{ asset('cms/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <!-- ChartJS -->
-<script src="{{ asset('cms/plugins/chart.js/Chart.min.js') }}"></script>
+{{--<script src="{{ asset('cms/plugins/chart.js/Chart.min.js') }}"></script>--}}
 <!-- Sparkline -->
-<script src="{{ asset('cms/plugins/sparklines/sparkline.js') }}"></script>
+{{--<script src="{{ asset('cms/plugins/sparklines/sparkline.js') }}"></script>--}}
 <!-- JQVMap -->
-<script src="{{ asset('cms/plugins/jqvmap/jquery.vmap.min.js') }}"></script>
-<script src="{{ asset('cms/plugins/jqvmap/maps/jquery.vmap.world.js') }}"></script>
+{{--<script src="{{ asset('cms/plugins/jqvmap/jquery.vmap.min.js') }}"></script>--}}
+{{--<script src="{{ asset('cms/plugins/jqvmap/maps/jquery.vmap.world.js') }}"></script>--}}
 <!-- jQuery Knob Chart -->
 <script src="{{ asset('cms/plugins/jquery-knob/jquery.knob.min.js') }}"></script>
 <!-- daterangepicker -->
 <script src="{{ asset('cms/plugins/moment/moment.min.js') }}"></script>
-<script src="{{ asset('cms/plugins/daterangepicker/daterangepicker.js') }}"></script>
+{{--<script src="{{ asset('cms/plugins/daterangepicker/daterangepicker.js') }}"></script>--}}
 <!-- Tempusdominus Bootstrap 4 -->
 <script src="{{ asset('cms/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
 <!-- Summernote -->
-<script src="{{ asset('cms/plugins/summernote/summernote-bs4.min.js') }}"></script>
+{{--<script src="{{ asset('cms/plugins/summernote/summernote-bs4.min.js') }}"></script>--}}
 <!-- overlayScrollbars -->
 <script src="{{ asset('cms/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('cms/dist/js/adminlte.js') }}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{ asset('cms/dist/js/pages/dashboard.js') }}"></script>
+{{--<script src="{{ asset('cms/dist/js/pages/dashboard.js') }}"></script>--}}
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('cms/dist/js/demo.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="{{ asset('cms/plugins/toastr/toastr.min.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="{{ asset('js/sweetalert.js') }}"></script>
+
 @yield('scripts')
 </body>
 </html>

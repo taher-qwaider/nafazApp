@@ -10,6 +10,6 @@ class Slider extends Model
     use HasFactory;
 
     public function image(){
-        return $this->hasOne(Image::class);
+        return $this->belongsTo(Image::class);
     }
 }
