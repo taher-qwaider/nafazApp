@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Service;
+use App\Models\Album;
 use Illuminate\Http\Request;
 
-class ServiceController extends Controller
+class AlbumController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class ServiceController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Service  $service
+     * @param  \App\Models\Album  $album
      * @return \Illuminate\Http\Response
      */
-    public function show(Service $service)
+    public function show(Album $album)
     {
         //
     }
@@ -52,10 +52,10 @@ class ServiceController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Service  $service
+     * @param  \App\Models\Album  $album
      * @return \Illuminate\Http\Response
      */
-    public function edit(Service $service)
+    public function edit(Album $album)
     {
         //
     }
@@ -64,10 +64,10 @@ class ServiceController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Service  $service
+     * @param  \App\Models\Album  $album
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Service $service)
+    public function update(Request $request, Album $album)
     {
         //
     }
@@ -75,10 +75,10 @@ class ServiceController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Service  $service
+     * @param  \App\Models\Album  $album
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Service $service)
+    public function destroy(Album $album)
     {
         //
     }

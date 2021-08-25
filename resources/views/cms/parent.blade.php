@@ -196,7 +196,98 @@
                     </li>
                 </ul>
             </li>
-
+            <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
+                    <i class="fab fa-usps"></i>
+                    <p>
+                        خدمات
+                        <i class="fas fa-angle-left right"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{ route('services.index') }}" class="nav-link">
+                            <i class="fas fa-list nav-icon"></i>
+                            <p>عرض</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('services.create') }}" class="nav-link">
+                            <i class="fas fa-plus nav-icon"></i>
+                            <p>إنشاء</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-layer-group"></i>
+                    <p>
+                        الأصناف
+                        <i class="fas fa-angle-left right"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{ route('categories.index') }}" class="nav-link">
+                            <i class="fas fa-list nav-icon"></i>
+                            <p>عرض</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('categories.create') }}" class="nav-link">
+                            <i class="fas fa-plus nav-icon"></i>
+                            <p>إنشاء</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-check-square"></i>
+                    <p>
+                        الأعمال
+                        <i class="fas fa-angle-left right"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{ route('jobs.index') }}" class="nav-link">
+                            <i class="fas fa-list nav-icon"></i>
+                            <p>عرض</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('jobs.create') }}" class="nav-link">
+                            <i class="fas fa-plus nav-icon"></i>
+                            <p>إنشاء</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-check-square"></i>
+                    <p>
+                        آراء العملاء
+                        <i class="fas fa-angle-left right"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{ route('opinions.index') }}" class="nav-link">
+                            <i class="fas fa-list nav-icon"></i>
+                            <p>عرض</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('opinions.create') }}" class="nav-link">
+                            <i class="fas fa-plus nav-icon"></i>
+                            <p>إنشاء</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

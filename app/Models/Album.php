@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Service extends Model
+class Album extends Model
 {
     use HasFactory;
 
-    public function image(){
-        return $this->belongsTo(Image::class);
+    public function images(){
+        return $this->belongsToMany(Image::class, 'album_images');
     }
 }

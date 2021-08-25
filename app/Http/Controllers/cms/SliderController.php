@@ -69,7 +69,7 @@ class SliderController extends Controller
             $slider->sub_title = $request->get('sub_title');
             $request->link = $request->get('link');
             if ($request->hasFile('image')){
-                $this->uploadFile($request->file('image'), 'images/sliders', 'public', 'slider'.time().'jpg');
+                $this->uploadFile($request->file('image'), 'images/sliders/', 'public', 'slider'.time().'jpg');
                 $image = new Image();
                 $image->path = $this->filePath;
                 $image->save();
@@ -77,7 +77,7 @@ class SliderController extends Controller
                 $slider->image_id = $image->id;
             }
             $isSaved = $slider->save();
-            return response()->json(['message' => $slider ? "تم إنشاء سلايدر بنجاح" : "خطأ في إنشاء سلايدر"], $isSaved ? 200:400);
+            return response()->json(['message' => $isSaved ? "تم إنشاء سلايدر بنجاح" : "خطأ في إنشاء سلايدر"], $isSaved ? 200:400);
         }else
             return response()->json(['message' => $validator->getMessageBag()->first()], 400);
     }
@@ -129,7 +129,7 @@ class SliderController extends Controller
             $request->link = $request->get('link');
             if ($request->hasFile('image')){
                 $slider->image()->delete();
-                $this->uploadFile($request->file('image'), 'images/sliders', 'public', 'slider'.time().'jpg');
+                $this->uploadFile($request->file('image'), 'images/sliders/', 'public', 'slider'.time().'jpg');
                 $image = new Image();
                 $image->path = $this->filePath;
                 $image->save();

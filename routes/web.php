@@ -28,3 +28,20 @@ Route::delete('settings/{setting}', [\App\Http\Controllers\cms\SettingController
 Route::get('get/{subject}/data', [\App\Http\Controllers\cms\SettingController::class, 'getData'])->name('settings.data');
 Route::get('setting/{subject}/create', [\App\Http\Controllers\cms\SettingController::class, 'create'])->name('setting.create');
 Route::get('setting/{setting}/edit', [\App\Http\Controllers\cms\SettingController::class, 'edit'])->name('setting.edit');
+
+Route::resource('services', \App\Http\Controllers\cms\ServiceController::class);
+Route::post('services/{service}/update',[\App\Http\Controllers\cms\ServiceController::class, 'update']);
+Route::get('service/list', [\App\Http\Controllers\cms\ServiceController::class, 'getServices'])->name('service.list');
+
+Route::resource('categories', \App\Http\Controllers\cms\CategoryController::class);
+Route::get('category/list', [\App\Http\Controllers\cms\CategoryController::class, 'getCategories'])->name('category.list');
+
+Route::resource('jobs', \App\Http\Controllers\cms\JobController::class);
+Route::get('job/list', [\App\Http\Controllers\cms\JobController::class, 'getJobs'])->name('job.list');
+
+
+Route::resource('images', \App\Http\Controllers\cms\ImageController::class);
+Route::delete('image/delete', [\App\Http\Controllers\cms\ImageController::class, 'delete'])->name('image.delete');
+
+Route::resource('opinions', \App\Http\Controllers\cms\OpinionController::class);
+Route::get('opinion/list', [\App\Http\Controllers\cms\OpinionController::class, 'getOpinions'])->name('opinion.list');
