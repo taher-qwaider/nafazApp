@@ -39,9 +39,12 @@ Route::get('category/list', [\App\Http\Controllers\cms\CategoryController::class
 Route::resource('jobs', \App\Http\Controllers\cms\JobController::class);
 Route::get('job/list', [\App\Http\Controllers\cms\JobController::class, 'getJobs'])->name('job.list');
 
-
 Route::resource('images', \App\Http\Controllers\cms\ImageController::class);
 Route::delete('image/delete', [\App\Http\Controllers\cms\ImageController::class, 'delete'])->name('image.delete');
 
 Route::resource('opinions', \App\Http\Controllers\cms\OpinionController::class);
 Route::get('opinion/list', [\App\Http\Controllers\cms\OpinionController::class, 'getOpinions'])->name('opinion.list');
+
+Route::resource('blogs', \App\Http\Controllers\cms\BlogController::class);
+Route::get('blog/list', [\App\Http\Controllers\cms\BlogController::class, 'getBlogs'])->name('blog.list');
+Route::post('blogs/{blog}/update',[\App\Http\Controllers\cms\BlogController::class, 'update']);
