@@ -1,9 +1,9 @@
 @extends('cms.parent')
 
-@section('title','إعدادات')
-@section('page-name',$subject)
+@section('title','سلايدر')
+@section('page-name','سلايدر')
 @section('main-page','الرئيسية')
-@section('sub-page',$subject)
+@section('sub-page','سلايدر')
 
 @section('styles')
 {{--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"/>--}}
@@ -19,7 +19,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">{{ $subject }}</h3>
+                        <h3 class="card-title">سلايدر</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body table-responsive p-0" style="margin-top: 20px">
@@ -27,9 +27,9 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>الموضوع</th>
-                                    <th>مفتاح</th>
-                                    <th>القيمة</th>
+                                    <th>عنوان</th>
+                                    <th>عنوان فرعي</th>
+                                    <th>رابط</th>
                                     <th>إعدادات</th>
                                 </tr>
                             </thead>
@@ -63,17 +63,17 @@
         var table = $('.yajra-datatable').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ route('settings.data', $subject) }}",
+            ajax: "{{ route('sliders.list') }}",
             columns: [
-                {data: 'id', name: 'id'},
-                {data: 'subject', name: 'subject'},
-                {data: 'key', name: 'key'},
-                {data: 'value', name: 'value'},
+                {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                {data: 'title', name: 'title'},
+                {data: 'sub_title', name: 'sub_title'},
+                {data: 'link', name: 'link'},
                 {
                     data: 'action',
                     name: 'action',
-                    orderable: false,
-                    searchable: false
+                    orderable: true,
+                    searchable: true
                 },
             ]
         });
@@ -101,7 +101,7 @@
         })
     }
     function destroy(id){
-        axios.delete('/settings/'+id)
+        axios.delete('/sliders/'+id)
             .then(function (response) {
                 console.log(response.data.message);
                 responseAlert(response.data.message, true);

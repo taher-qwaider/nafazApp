@@ -136,4 +136,8 @@ class SettingController extends Controller
         $isDeleted = $setting->delete();
         return response()->json(['message' => $isDeleted ? "تم حذف بنجاح" : "خطأ في حذف"], $isDeleted ? 200:400);
     }
+
+    public function getMaps(){
+
+    }
 }

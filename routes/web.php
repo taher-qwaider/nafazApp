@@ -48,3 +48,9 @@ Route::get('opinion/list', [\App\Http\Controllers\cms\OpinionController::class, 
 Route::resource('blogs', \App\Http\Controllers\cms\BlogController::class);
 Route::get('blog/list', [\App\Http\Controllers\cms\BlogController::class, 'getBlogs'])->name('blog.list');
 Route::post('blogs/{blog}/update',[\App\Http\Controllers\cms\BlogController::class, 'update']);
+
+Route::resource('socialMedia', \App\Http\Controllers\cms\SocialMediaController::class);
+Route::get('socialMedias/list', [\App\Http\Controllers\cms\SocialMediaController::class, 'getSocialMedia'])->name('socialMedia.list');
+
+Route::get('logo/edit', [\App\Http\Controllers\cms\LogoController::class, 'edit'])->name('logo.edit');
+Route::post('logo/update', [\App\Http\Controllers\cms\LogoController::class, 'update']);

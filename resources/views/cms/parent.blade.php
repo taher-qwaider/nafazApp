@@ -194,6 +194,18 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{ route('settings.index', 'maps') }}" class="nav-link">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <p>الموقع</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('logo.edit') }}" class="nav-link">
+                            <i class="fab fa-joomla"></i>
+                            <p>شعار الموقع</p>
+                        </a>
+                    </li>
                 </ul>
             </li>
             <li class="nav-item has-treeview">
@@ -267,7 +279,7 @@
             </li>
             <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
-                    <i class="fas fa-check-square"></i>
+                    <i class="fas fa-handshake"></i>
                     <p>
                         آراء العملاء
                         <i class="fas fa-angle-left right"></i>
@@ -290,7 +302,7 @@
             </li>
             <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
-                    <i class="fas fa-check-square"></i>
+                    <i class="fas fa-address-card"></i>
                     <p>
                         المدونات
                         <i class="fas fa-angle-left right"></i>
@@ -305,6 +317,29 @@
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('blogs.create') }}" class="nav-link">
+                            <i class="fas fa-plus nav-icon"></i>
+                            <p>إنشاء</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-share"></i>
+                    <p>
+                        مواقع التواص الجتماعي
+                        <i class="fas fa-angle-left right"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{ route('socialMedia.index') }}" class="nav-link">
+                            <i class="fas fa-list nav-icon"></i>
+                            <p>عرض</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('socialMedia.create') }}" class="nav-link">
                             <i class="fas fa-plus nav-icon"></i>
                             <p>إنشاء</p>
                         </a>
