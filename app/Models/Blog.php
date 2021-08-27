@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Blog extends Model
 {
     use HasFactory;
+    protected $with = ['image'];
 
     public function image(){
         return $this->belongsTo(Image::class);

@@ -29,7 +29,7 @@
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="name">غسم الموقع</label>
+                                    <label for="name">إسم الموقع</label>
                                     <input type="text" class="form-control" id="name" placeholder="أدخل الإسم">
                                 </div>
                                 <div class="form-group">

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Album extends Model
 {
     use HasFactory;
+    protected $with = ['images'];
 
     public function images(){
         return $this->belongsToMany(Image::class, 'album_images');

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Job extends Model
 {
     use HasFactory;
+    protected $with = ['albums', 'category'];
 
     public function albums(){
         return $this->belongsToMany(Album::class, 'job_albums');

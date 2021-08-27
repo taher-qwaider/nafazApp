@@ -12,10 +12,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::view('test', 'cms.index');
 Route::get('/', function () {
     return view('cms.dashboard');
 })->name('dashboard');
+
+Route::get('home', [\App\Http\Controllers\app\HomeController::class, 'index']);
 
 Route::resource('sliders', \App\Http\Controllers\cms\SliderController::class);
 Route::get('slider/list', [\App\Http\Controllers\cms\SliderController::class, 'getSliders'])->name('sliders.list');
@@ -54,3 +55,5 @@ Route::get('socialMedias/list', [\App\Http\Controllers\cms\SocialMediaController
 
 Route::get('logo/edit', [\App\Http\Controllers\cms\LogoController::class, 'edit'])->name('logo.edit');
 Route::post('logo/update', [\App\Http\Controllers\cms\LogoController::class, 'update']);
+
+Route::get('album/images', [\App\Http\Controllers\cms\AlbumController::class, 'getImages'])->name('album.images');

@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Opinion extends Model
 {
     use HasFactory;
+    protected $with = ['image'];
+
+    public function image(){
+        return $this->belongsTo(Image::class);
+    }
 }

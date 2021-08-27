@@ -67,7 +67,7 @@ class SliderController extends Controller
             $slider = new Slider();
             $slider->title = $request->get('title');
             $slider->sub_title = $request->get('sub_title');
-            $request->link = $request->get('link');
+            $slider->link = $request->get('link');
             if ($request->hasFile('image')){
                 $this->uploadFile($request->file('image'), 'images/sliders/', 'public', 'slider'.time().'jpg');
                 $image = new Image();
@@ -126,7 +126,7 @@ class SliderController extends Controller
         if (!$validator->fails()){
             $slider->title = $request->get('title');
             $slider->sub_title = $request->get('sub_title');
-            $request->link = $request->get('link');
+            $slider->link = $request->get('link');
             if ($request->hasFile('image')){
                 $slider->image()->delete();
                 $this->uploadFile($request->file('image'), 'images/sliders/', 'public', 'slider'.time().'jpg');

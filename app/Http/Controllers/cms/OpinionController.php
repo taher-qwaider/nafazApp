@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\cms;
 
+use App\Helpers\FileUpload;
 use App\Http\Controllers\Controller;
+use App\Models\Image;
 use App\Models\Opinion;
 use App\Models\Service;
 use Illuminate\Http\Request;
@@ -10,6 +12,7 @@ use Yajra\DataTables\Facades\DataTables;
 
 class OpinionController extends Controller
 {
+    use FileUpload;
     /**
      * Display a listing of the resource.
      *
@@ -59,7 +62,8 @@ class OpinionController extends Controller
             'name' => 'required|string|min:3',
             'profession' => 'required|string|min:3',
             'text' => 'required|string|min:3',
-            'rate' => 'required|numeric|min:0|max:5'
+            'rate' => 'required|numeric|min:0|max:5',
+            'image' => 'required|image|mimes:jpeg,jpg,png'
         ]);
         if (!$validator->fails()){
             $opinion = new Opinion();
@@ -67,6 +71,14 @@ class OpinionController extends Controller
             $opinion->text = $request->get('text');
             $opinion->profession = $request->get('profession');
             $opinion->rate = $request->get('rate');
+            if ($request->hasFile('image')){
+                $this->uploadFile($request->file('image'), 'images/customers/', 'public', 'customer_'.time().'jpg');
+                $image = new Image();
+                $image->path = $this->filePath;
+                $image->save();
+                $image = $image->refresh();
+                $opinion->image_id = $image->id;
+            }
 
             $isSaved = $opinion->save();
             return response()->json(['message' => $isSaved ? "تم إنشاء بنجاح" : "خطأ في إنشاء"], $isSaved ? 200:400);

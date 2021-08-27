@@ -37,6 +37,15 @@
                                     <input type="text" class="form-control" id="profession" placeholder="أدخل المهنة">
                                 </div>
                                 <div class="form-group">
+                                    <label for="image">صورة</label>
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" name="image" id="image">
+                                            <label class="custom-file-label" for="image">إختر صورة</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label for="text">الرئي</label>
                                     <textarea class="form-control" id="text" placeholder="أدخل "></textarea>
                                 </div>
@@ -64,10 +73,15 @@
 @section('scripts')
     <!-- bs-custom-file-input -->
     <script src="{{ asset('cms/plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
-
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            bsCustomFileInput.init();
+        });
+
+    </script>
 
     <script>
         function performStore() {
@@ -77,6 +91,7 @@
             formData.append('profession', document.getElementById('profession').value);
             formData.append('text', document.getElementById('text').value);
             formData.append('rate', document.getElementById('rate').value);
+            formData.append('image', document.getElementById('image').files[0]);
 
             axios.post('/opinions', formData
             )

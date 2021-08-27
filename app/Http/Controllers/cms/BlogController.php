@@ -6,6 +6,8 @@ use App\Helpers\FileUpload;
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
 use App\Models\Image;
+use App\Models\Setting;
+use App\Models\SocialMedia;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -88,6 +90,16 @@ class BlogController extends Controller
     public function show(Blog $blog)
     {
         //
+        $blogs = Blog::all();
+        $socialMedia = SocialMedia::all();
+        $logo = Setting::where('subject', 'logo')->first();
+
+        return response()->view('cms.blog.show', [
+            'blogs' => $blogs,
+            'blog' => $blog,
+            'socialMedias' => $socialMedia,
+            'logo' => $logo
+        ]);
     }
 
     /**
