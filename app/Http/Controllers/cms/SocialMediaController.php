@@ -10,6 +10,11 @@ use Yajra\DataTables\Facades\DataTables;
 
 class SocialMediaController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->authorizeResource(SocialMedia::class, 'user');
+    }
     /**
      * Display a listing of the resource.
      *

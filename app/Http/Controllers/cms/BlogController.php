@@ -14,6 +14,10 @@ use Yajra\DataTables\Facades\DataTables;
 class BlogController extends Controller
 {
     use FileUpload;
+    public function __construct()
+    {
+        $this->authorizeResource(Blog::class, 'user');
+    }
     /**
      * Display a listing of the resource.
      *

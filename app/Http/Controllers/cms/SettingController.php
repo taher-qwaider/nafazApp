@@ -11,6 +11,11 @@ use Yajra\DataTables\Facades\DataTables;
 
 class SettingController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->authorizeResource(Setting::class, 'user');
+    }
     /**
      * Display a listing of the resource.
      *

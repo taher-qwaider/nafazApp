@@ -13,6 +13,10 @@ use Yajra\DataTables\Facades\DataTables;
 class OpinionController extends Controller
 {
     use FileUpload;
+    public function __construct()
+    {
+        $this->authorizeResource(Opinion::class, 'user');
+    }
     /**
      * Display a listing of the resource.
      *

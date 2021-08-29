@@ -17,6 +17,7 @@ function update(url, data, redirectUrl) {
     axios.put(url, data)
         .then(function (response) {
             console.log(response);
+            showToaster(response.data.message, true);
             window.location.href = redirectUrl;
         })
         .catch(function (error) {

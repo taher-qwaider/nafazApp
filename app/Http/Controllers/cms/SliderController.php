@@ -13,6 +13,11 @@ use Yajra\DataTables\Facades\DataTables;
 class SliderController extends Controller
 {
     use FileUpload;
+
+    public function __construct()
+    {
+        $this->authorizeResource(Slider::class, 'user');
+    }
     /**
      * Display a listing of the resource.
      *

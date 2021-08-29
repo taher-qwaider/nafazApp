@@ -13,6 +13,11 @@ use Yajra\DataTables\Facades\DataTables;
 class ServiceController extends Controller
 {
     use FileUpload;
+
+    public function __construct()
+    {
+        $this->authorizeResource(Service::class, 'user');
+    }
     /**
      * Display a listing of the resource.
      *

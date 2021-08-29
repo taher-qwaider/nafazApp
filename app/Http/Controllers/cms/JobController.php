@@ -15,6 +15,11 @@ use Yajra\DataTables\Facades\DataTables;
 class JobController extends Controller
 {
     use FileUpload;
+
+    public function __construct()
+    {
+        $this->authorizeResource(Job::class, 'user');
+    }
     /**
      * Display a listing of the resource.
      *

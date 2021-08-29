@@ -79,7 +79,7 @@
         </div>
         <div class="col-6 col-lg-4 d-flex justify-content-end align-items-center pl-2 pl-lg-0">
           <img src="{{ asset('app/images/111.png') }}" class="image-vision ml-3 d-none d-lg-block">
-          <a href="javascript:void(0)" class="btn-setting link btn-hvr-up btn-hvr-whatsapp color-white ml-lg-4 d-lg-inline-block"><i class="fab fa-whatsapp"></i> +669 9 234 812</a>
+            <a href="wa.me://{{ $socialMedias->where('name', 'whatsup')->first()->url }}" target="_blank" class="nav-btn-number btn-setting btn-hvr-up btn-hvr-whatsapp color-white mr-lg-3"><i class="fab fa-whatsapp"></i> {{ $socialMedias->where('name', 'whatsup')->first()->url }}</a>
         </div>
       </div>
     </section>
@@ -102,7 +102,7 @@
           </div>
           <div class="d-flex align-items-center">
             <img src="{{ asset('app/images/111.png') }}" class="image-vision ml-2 nav-btn-number d-none d-lg-block">
-            <a href="javascript:void(0)" class="nav-btn-number btn-setting btn-hvr-up btn-hvr-whatsapp color-white mr-lg-3"><i class="fab fa-whatsapp"></i> +669 9 234 812</a>
+            <a href="wa.me://{{ $socialMedias->where('name', 'whatsup')->first()->url }}" target="_blank" class="nav-btn-number btn-setting btn-hvr-up btn-hvr-whatsapp color-white mr-lg-3"><i class="fab fa-whatsapp"></i>{{ $socialMedias->where('name', 'whatsup')->first()->url }}</a>
           </div>
           <!-- side menu open button -->
           <div class="menu-btn">
@@ -400,7 +400,7 @@
                                     <h2 class="mb-0 font-weight-normal">{{ $blog->title }}</h2>
                                 </div>
                                 <p class="color-black mb-5">{{ $blog->body }}</p>
-                                <a href="{{ route('blogs.show', $blog->id) }}" class="btn-setting color-black btn-hvr-up btn-blue btn-hvr-pink">قراءة المزيد</a>
+                                <a href="{{ route('blogs.show', $blog->id) }}" target="_blank" class="btn-setting color-black btn-hvr-up btn-blue btn-hvr-pink">قراءة المزيد</a>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-12 p-0">
@@ -436,7 +436,7 @@
 
                 <!--Phone-->
                 <p class="mb-3">
-                    الهاتف : {{ $call_us->where('key', 'phone')->first()->value }}
+                    الهاتف : <a href="tel:{{ $call_us->where('key', 'phone')->first()->value }}" class="color-white">{{ $call_us->where('key', 'phone')->first()->value }}</a>
                 </p>
 
                 <!--Email-->

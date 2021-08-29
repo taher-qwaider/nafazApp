@@ -98,7 +98,7 @@
           <img src="{{ asset('cms/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block">{{ \Illuminate\Support\Facades\Auth::user()->name }}</a>
         </div>
       </div>
 
@@ -115,31 +115,68 @@
               </p>
             </a>
           </li>
-            <li class="nav-header">لوحة التحكم</li>
-            <li class="nav-item has-treeview">
+            <li class="nav-header">المستخدمين</li>
+            @canany(['read-users', 'create-users'])
+                <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                     <i class="fas fa-list-ul"></i>
                     <p>
-                        السلايدر
+                        المستخدمين
                         <i class="fas fa-angle-left right"></i>
                     </p>
                 </a>
                 <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                        <a href="{{ route('sliders.index') }}" class="nav-link">
-                            <i class="fas fa-list nav-icon"></i>
-                            <p>عرض</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('sliders.create') }}" class="nav-link">
-                            <i class="fas fa-plus nav-icon"></i>
-                            <p>إنشاء</p>
-                        </a>
-                    </li>
+                    @can('read-users')
+                        <li class="nav-item">
+                            <a href="{{ route('users.index') }}" class="nav-link">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>عرض</p>
+                            </a>
+                        </li>
+                    @endcan
+                    @can('create-users')
+                        <li class="nav-item">
+                            <a href="{{ route('users.create') }}" class="nav-link">
+                                <i class="fas fa-plus nav-icon"></i>
+                                <p>إنشاء</p>
+                            </a>
+                        </li>
+                    @endcan
                 </ul>
             </li>
-            <li class="nav-item has-treeview">
+            @endcanany
+            <li class="nav-header">لوحة التحكم</li>
+            @canany(['read-sliders', 'create-sliders'])
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-list-ul"></i>
+                        <p>
+                            السلايدر
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                <ul class="nav nav-treeview">
+                    @can('read-sliders')
+                        <li class="nav-item">
+                            <a href="{{ route('sliders.index') }}" class="nav-link">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>عرض</p>
+                            </a>
+                        </li>
+                    @endcan
+                    @can('create-sliders')
+                        <li class="nav-item">
+                            <a href="{{ route('sliders.create') }}" class="nav-link">
+                                <i class="fas fa-plus nav-icon"></i>
+                                <p>إنشاء</p>
+                            </a>
+                        </li>
+                    @endcan
+                </ul>
+            </li>
+            @endcanany
+            @canany(['read-settings', 'create-settings'])
+                <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                     <i class="fas fa-cog"></i>
                     <p>
@@ -208,7 +245,9 @@
                     </li>
                 </ul>
             </li>
-            <li class="nav-item has-treeview">
+            @endcanany
+            @canany(['read-services', 'create-services'])
+                <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                     <i class="fab fa-usps"></i>
                     <p>
@@ -217,21 +256,27 @@
                     </p>
                 </a>
                 <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                        <a href="{{ route('services.index') }}" class="nav-link">
-                            <i class="fas fa-list nav-icon"></i>
-                            <p>عرض</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('services.create') }}" class="nav-link">
-                            <i class="fas fa-plus nav-icon"></i>
-                            <p>إنشاء</p>
-                        </a>
-                    </li>
+                    @can('read-services')
+                        <li class="nav-item">
+                            <a href="{{ route('services.index') }}" class="nav-link">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>عرض</p>
+                            </a>
+                        </li>
+                    @endcan
+                    @can('create-services')
+                        <li class="nav-item">
+                            <a href="{{ route('services.create') }}" class="nav-link">
+                                <i class="fas fa-plus nav-icon"></i>
+                                <p>إنشاء</p>
+                            </a>
+                        </li>
+                    @endcan
                 </ul>
             </li>
-            <li class="nav-item has-treeview">
+            @endcanany
+            @canany(['read-categories', 'create-categories'])
+                <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                     <i class="fas fa-layer-group"></i>
                     <p>
@@ -240,111 +285,210 @@
                     </p>
                 </a>
                 <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                        <a href="{{ route('categories.index') }}" class="nav-link">
-                            <i class="fas fa-list nav-icon"></i>
-                            <p>عرض</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('categories.create') }}" class="nav-link">
-                            <i class="fas fa-plus nav-icon"></i>
-                            <p>إنشاء</p>
-                        </a>
-                    </li>
+                    @can('read-categories')
+                        <li class="nav-item">
+                            <a href="{{ route('categories.index') }}" class="nav-link">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>عرض</p>
+                            </a>
+                        </li>
+                    @endcan
+                    @can('create-categories')
+                        <li class="nav-item">
+                            <a href="{{ route('categories.create') }}" class="nav-link">
+                                <i class="fas fa-plus nav-icon"></i>
+                                <p>إنشاء</p>
+                            </a>
+                        </li>
+                    @endcan
                 </ul>
             </li>
-            <li class="nav-item has-treeview">
+            @endcanany
+            @canany(['read-categories', 'create-categories'])
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-check-square"></i>
+                        <p>
+                            الأعمال
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        @can('read-jobs')
+                            <li class="nav-item">
+                                <a href="{{ route('jobs.index') }}" class="nav-link">
+                                    <i class="fas fa-list nav-icon"></i>
+                                    <p>عرض</p>
+                                </a>
+                            </li>
+                        @endcan
+                        @can('create-jobs')
+                            <li class="nav-item">
+                                <a href="{{ route('jobs.create') }}" class="nav-link">
+                                    <i class="fas fa-plus nav-icon"></i>
+                                    <p>إنشاء</p>
+                                </a>
+                            </li>
+                        @endcan
+                    </ul>
+                </li>
+            @endcanany
+            @canany(['read-opinions', 'create-opinions'])
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-handshake"></i>
+                        <p>
+                            آراء العملاء
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        @can('read-opinions')
+                            <li class="nav-item">
+                                <a href="{{ route('opinions.index') }}" class="nav-link">
+                                    <i class="fas fa-list nav-icon"></i>
+                                    <p>عرض</p>
+                                </a>
+                            </li>
+                        @endcan
+                        @can('create-opinions')
+                            <li class="nav-item">
+                                <a href="{{ route('opinions.create') }}" class="nav-link">
+                                    <i class="fas fa-plus nav-icon"></i>
+                                    <p>إنشاء</p>
+                                </a>
+                            </li>
+                        @endcan
+                    </ul>
+                </li>
+            @endcanany
+            @canany(['read-blogs', 'create-blogs'])
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-address-card"></i>
+                        <p>
+                            المدونات
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        @can('read-blogs')
+                            <li class="nav-item">
+                                <a href="{{ route('blogs.index') }}" class="nav-link">
+                                    <i class="fas fa-list nav-icon"></i>
+                                    <p>عرض</p>
+                                </a>
+                            </li>
+                        @endcan
+                        @can('create-blogs')
+                            <li class="nav-item">
+                                <a href="{{ route('blogs.create') }}" class="nav-link">
+                                    <i class="fas fa-plus nav-icon"></i>
+                                    <p>إنشاء</p>
+                                </a>
+                            </li>
+                        @endcan
+                    </ul>
+                </li>
+            @endcanany
+            @canany(['read-social-media', 'create-social-media'])
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-share"></i>
+                        <p>
+                            مواقع التواص الجتماعي
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        @can('read-social-media')
+                            <li class="nav-item">
+                                <a href="{{ route('socialMedia.index') }}" class="nav-link">
+                                    <i class="fas fa-list nav-icon"></i>
+                                    <p>عرض</p>
+                                </a>
+                            </li>
+                        @endcan
+                        @can('create-social-media')
+                            <li class="nav-item">
+                                <a href="{{ route('socialMedia.create') }}" class="nav-link">
+                                    <i class="fas fa-plus nav-icon"></i>
+                                    <p>إنشاء</p>
+                                </a>
+                            </li>
+                        @endcan
+                    </ul>
+                </li>
+            @endcanany
+
+
+            <li class="nav-header">الصلاحيات</li>
+            @canany(['read-permissions', 'create-permissions'])
+                <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
-                    <i class="fas fa-check-square"></i>
+                    <i class="fas fa-list-ul"></i>
                     <p>
-                        الأعمال
+                        الصلاحيات
                         <i class="fas fa-angle-left right"></i>
                     </p>
                 </a>
                 <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                        <a href="{{ route('jobs.index') }}" class="nav-link">
-                            <i class="fas fa-list nav-icon"></i>
-                            <p>عرض</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('jobs.create') }}" class="nav-link">
-                            <i class="fas fa-plus nav-icon"></i>
-                            <p>إنشاء</p>
-                        </a>
-                    </li>
+                    @can('read-permissions')
+                        <li class="nav-item">
+                            <a href="{{ route('permissions.index') }}" class="nav-link">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>عرض</p>
+                            </a>
+                        </li>
+                    @endcan
+                    @can('create-permissions')
+                        <li class="nav-item">
+                            <a href="{{ route('permissions.create') }}" class="nav-link">
+                                <i class="fas fa-plus nav-icon"></i>
+                                <p>إنشاء</p>
+                            </a>
+                        </li>
+                    @endcan
                 </ul>
             </li>
-            <li class="nav-item has-treeview">
-                <a href="#" class="nav-link">
-                    <i class="fas fa-handshake"></i>
+            @endcanany
+            @canany(['read-roles', 'create-roles'])
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-list-ul"></i>
+                        <p>
+                            رول
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        @can('read-roles')
+                            <li class="nav-item">
+                                <a href="{{ route('roles.index') }}" class="nav-link">
+                                    <i class="fas fa-list nav-icon"></i>
+                                    <p>عرض</p>
+                                </a>
+                            </li>
+                        @endcan
+                        @can('create-roles')
+                            <li class="nav-item">
+                                <a href="{{ route('roles.create') }}" class="nav-link">
+                                    <i class="fas fa-plus nav-icon"></i>
+                                    <p>إنشاء</p>
+                                </a>
+                            </li>
+                        @endcan
+                    </ul>
+                </li>
+            @endcanany
+            <li class="nav-header">إعدادات</li>
+            <li class="nav-item">
+                <a href="{{ route('logout') }}" class="nav-link">
+                    <i class="nav-icon fas fa-sign-out-alt"></i>
                     <p>
-                        آراء العملاء
-                        <i class="fas fa-angle-left right"></i>
+                        Logout
                     </p>
                 </a>
-                <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                        <a href="{{ route('opinions.index') }}" class="nav-link">
-                            <i class="fas fa-list nav-icon"></i>
-                            <p>عرض</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('opinions.create') }}" class="nav-link">
-                            <i class="fas fa-plus nav-icon"></i>
-                            <p>إنشاء</p>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li class="nav-item has-treeview">
-                <a href="#" class="nav-link">
-                    <i class="fas fa-address-card"></i>
-                    <p>
-                        المدونات
-                        <i class="fas fa-angle-left right"></i>
-                    </p>
-                </a>
-                <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                        <a href="{{ route('blogs.index') }}" class="nav-link">
-                            <i class="fas fa-list nav-icon"></i>
-                            <p>عرض</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('blogs.create') }}" class="nav-link">
-                            <i class="fas fa-plus nav-icon"></i>
-                            <p>إنشاء</p>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li class="nav-item has-treeview">
-                <a href="#" class="nav-link">
-                    <i class="fas fa-share"></i>
-                    <p>
-                        مواقع التواص الجتماعي
-                        <i class="fas fa-angle-left right"></i>
-                    </p>
-                </a>
-                <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                        <a href="{{ route('socialMedia.index') }}" class="nav-link">
-                            <i class="fas fa-list nav-icon"></i>
-                            <p>عرض</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('socialMedia.create') }}" class="nav-link">
-                            <i class="fas fa-plus nav-icon"></i>
-                            <p>إنشاء</p>
-                        </a>
-                    </li>
-                </ul>
             </li>
         </ul>
       </nav>
