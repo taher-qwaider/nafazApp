@@ -103,7 +103,7 @@
         })
     }
     function destroy(id){
-        axios.delete('/users/'+id)
+        axios.delete('/panel/cms/users/'+id)
             .then(function (response) {
                 console.log(response.data.message);
                 responseAlert(response.data.message, true);

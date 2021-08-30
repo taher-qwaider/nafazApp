@@ -59,7 +59,7 @@
 
     <script>
         function performUpdate(id) {
-            axios.put('/settings/'+id, {
+            axios.put('/panel/cms/settings/'+id, {
                 key : document.getElementById('key').value,
                 value : document.getElementById('value').value
             })

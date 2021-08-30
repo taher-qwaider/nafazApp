@@ -127,7 +127,7 @@
             for (var i =0; i<window.imagesIds.length; i++){
                 formData.append('images['+i+']', window.imagesIds[i]);
             }
-            axios.post('/jobs', formData
+            axios.post('/panel/cms/jobs', formData
             )
                 .then(function (response) {
                     console.log(response);

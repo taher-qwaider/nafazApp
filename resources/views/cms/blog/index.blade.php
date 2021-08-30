@@ -100,7 +100,7 @@
         })
     }
     function destroy(id){
-        axios.delete('/blogs/'+id)
+        axios.delete('/panel/cms/blogs/'+id)
             .then(function (response) {
                 console.log(response.data.message);
                 responseAlert(response.data.message, true);

@@ -99,7 +99,7 @@
         })
     }
     function destroy(id){
-        axios.delete('/jobs/'+id)
+        axios.delete('/panel/cms/jobs/'+id)
             .then(function (response) {
                 console.log(response.data.message);
                 responseAlert(response.data.message, true);

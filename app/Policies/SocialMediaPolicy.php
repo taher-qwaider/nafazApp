@@ -5,7 +5,7 @@ namespace App\Policies;
 use App\Models\SocialMedia;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
-use Illuminate\Support\Facades\Response;
+use Illuminate\Auth\Access\Response;
 
 class SocialMediaPolicy
 {

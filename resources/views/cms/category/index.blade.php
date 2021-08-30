@@ -97,7 +97,7 @@
         })
     }
     function destroy(id){
-        axios.delete('/categories/'+id)
+        axios.delete('/panel/cms/categories/'+id)
             .then(function (response) {
                 console.log(response.data.message);
                 responseAlert(response.data.message, true);

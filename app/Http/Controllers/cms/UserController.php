@@ -34,18 +34,18 @@ class UserController extends Controller
             return DataTables::of(User::withCount(['permissions', 'roles'])->get())
                 ->addIndexColumn()
                 ->addColumn('permissions', function($row){
-                    $actionBtn = "<a href='/panel/user/$row->id/permissions' class='edit btn btn-success btn-sm'>$row->permissions_count صلاحيات</a>";
+                    $actionBtn = "<a href='/panel/cms/user/$row->id/permissions' class='edit btn btn-success btn-sm'>$row->permissions_count صلاحيات</a>";
                     return $actionBtn;
                 })
                 ->addIndexColumn()
                 ->addIndexColumn()
                 ->addColumn('roles', function($row){
-                    $actionBtn = "<a href='/panel/user/$row->id/roles' class='edit btn btn-primary btn-sm'>$row->roles_count روول</a>";
+                    $actionBtn = "<a href='/panel/cms/user/$row->id/roles' class='edit btn btn-primary btn-sm'>$row->roles_count روول</a>";
                     return $actionBtn;
                 })
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
-                    $actionBtn = "<a href='http://127.0.0.1:8000/users/$row->id/edit' class='edit btn btn-success btn-sm'>Edit</a> <button onclick='preformedDelete($row->id)' class='delete btn btn-danger btn-sm'>Delete</button>";
+                    $actionBtn = "<a href='http://127.0.0.1:8000/panel/cms/users/$row->id/edit' class='edit btn btn-success btn-sm'>Edit</a> <button onclick='preformedDelete($row->id)' class='delete btn btn-danger btn-sm'>Delete</button>";
                     return $actionBtn;
                 })
                 ->rawColumns(['action', 'permissions', 'roles'])

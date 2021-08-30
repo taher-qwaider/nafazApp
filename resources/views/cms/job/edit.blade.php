@@ -142,7 +142,7 @@
     </script>
     <script>
         function performUpdate(id) {
-            axios.put('/jobs/'+id, {
+            axios.put('/panel/cms/jobs/'+id, {
                 category_id: document.getElementById('category').value,
                 desc: document.getElementById('desc').value,
                 images:window.imagesIds

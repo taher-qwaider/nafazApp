@@ -86,7 +86,7 @@
         <script src="{{ asset('cms/plugins/toastr/toastr.min.js') }}"></script>
     <script>
         function store(id, permission_id){
-            axios.post('/panel/user/'+id+'/permissions', {
+            axios.post('/panel/cms/user/'+id+'/permissions', {
                 permission_id:permission_id,
                 // active:document.getElementById
             })

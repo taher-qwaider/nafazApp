@@ -67,7 +67,7 @@
             formData.append('key', document.getElementById('key').value);
             formData.append('value', document.getElementById('value').value);
 
-            axios.post('/settings/'+'{{$subject}}', formData
+            axios.post('/panel/cms/settings/'+'{{$subject}}', formData
             )
                 .then(function (response) {
                     console.log(response);

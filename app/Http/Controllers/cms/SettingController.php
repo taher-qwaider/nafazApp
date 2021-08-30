@@ -35,7 +35,7 @@ class SettingController extends Controller
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
-                    $actionBtn = "<a href='http://127.0.0.1:8000/setting/$row->id/edit' class='edit btn btn-success btn-sm'>Edit</a> <button onclick='preformedDelete($row->id)' class='delete btn btn-danger btn-sm'>Delete</button>";
+                    $actionBtn = "<a href='http://127.0.0.1:8000/panel/cms/setting/$row->id/edit' class='edit btn btn-success btn-sm'>Edit</a> <button onclick='preformedDelete($row->id)' class='delete btn btn-danger btn-sm'>Delete</button>";
                     return $actionBtn;
                 })
                 ->rawColumns(['action'])

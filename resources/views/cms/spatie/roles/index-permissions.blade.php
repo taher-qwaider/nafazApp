@@ -87,7 +87,7 @@
         let data = {
             permission_id: permissionId,
         }
-        store('/panel/role/'+roleId+'/permissions', data)
+        store('/panel/cms/role/'+roleId+'/permissions', data)
     }
 </script>
 @endsection

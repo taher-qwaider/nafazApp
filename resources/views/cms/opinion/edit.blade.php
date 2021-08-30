@@ -72,7 +72,7 @@
     <script>
         function performStore(id) {
 
-            axios.put('/opinions/'+id, {
+            axios.put('/panel/cms/opinions/'+id, {
                 name:document.getElementById('name').value,
                 profession:document.getElementById('profession').value,
                 text:document.getElementById('text').value,

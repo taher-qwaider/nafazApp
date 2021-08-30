@@ -68,7 +68,7 @@
             var formData = new FormData();
             formData.append('title', document.getElementById('title').value);
 
-            axios.post('/categories', formData
+            axios.post('/panel/cms/categories', formData
             )
                 .then(function (response) {
                     console.log(response);

@@ -58,7 +58,7 @@
 
     <script>
         function performUpdate(id) {
-            axios.put('/socialMedia/'+id, {
+            axios.put('/panel/cms/socialMedia/'+id, {
                 name:document.getElementById('name').value,
                 link:document.getElementById('link').value
                 })

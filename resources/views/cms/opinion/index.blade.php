@@ -100,7 +100,7 @@
         })
     }
     function destroy(id){
-        axios.delete('/opinion/'+id)
+        axios.delete('/panel/cms/opinion/'+id)
             .then(function (response) {
                 console.log(response.data.message);
                 responseAlert(response.data.message, true);

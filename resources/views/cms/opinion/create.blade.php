@@ -93,7 +93,7 @@
             formData.append('rate', document.getElementById('rate').value);
             formData.append('image', document.getElementById('image').files[0]);
 
-            axios.post('/opinions', formData
+            axios.post('/panel/cms/opinions', formData
             )
                 .then(function (response) {
                     console.log(response);

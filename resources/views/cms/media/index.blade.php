@@ -98,7 +98,7 @@
         })
     }
     function destroy(id){
-        axios.delete('/socialMedia/'+id)
+        axios.delete('/panel/cms/socialMedia/'+id)
             .then(function (response) {
                 console.log(response.data.message);
                 responseAlert(response.data.message, true);

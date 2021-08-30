@@ -101,7 +101,7 @@
         })
     }
     function destroy(id){
-        axios.delete('/panel/roles/'+id)
+        axios.delete('/panel/cms/roles/'+id)
             .then(function (response) {
                 console.log(response.data.message);
                 responseAlert(response.data.message, true);

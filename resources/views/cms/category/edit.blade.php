@@ -66,7 +66,7 @@
     </script>
     <script>
         function performUpdate(id) {
-            axios.put('/categories/'+id, {
+            axios.put('/panel/cms/categories/'+id, {
                 title:document.getElementById('title').value
                 })
                 .then(function (response) {

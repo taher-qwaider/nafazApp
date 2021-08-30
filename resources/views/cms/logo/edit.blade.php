@@ -75,7 +75,7 @@
             var formData = new FormData();
             formData.append('image', document.getElementById('image').files[0]);
 
-            axios.post('/logo/update', formData
+            axios.post('/panel/cms/logo/update', formData
             )
                 .then(function (response) {
                     console.log(response);

@@ -80,7 +80,7 @@
             guard: document.getElementById ('guard').value,
             name: document.getElementById('name').value,
         }
-        store('/panel/permissions', data)
+        store('/panel/cms/permissions', data)
     }
 </script>
 

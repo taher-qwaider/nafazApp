@@ -84,7 +84,7 @@
             guard: document.getElementById ('guard').value,
             name: document.getElementById('name').value,
         }
-        store('/panel/roles', data)
+        store('/panel/cms/roles', data)
     }
 </script>
 

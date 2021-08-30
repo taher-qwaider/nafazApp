@@ -100,7 +100,7 @@
         })
     }
     function destroy(id){
-        axios.delete('/services/'+id)
+        axios.delete('/panel/cms/services/'+id)
             .then(function (response) {
                 console.log(response.data.message);
                 responseAlert(response.data.message, true);

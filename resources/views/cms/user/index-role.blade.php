@@ -87,7 +87,7 @@
         <script src="{{ asset('cms/plugins/toastr/toastr.min.js') }}"></script>
     <script>
         function store(id, role_id){
-            axios.post('/panel/user/'+id+'/roles', {
+            axios.post('/panel/cms/user/'+id+'/roles', {
                 role_id:role_id,
                 // active:document.getElementById
             })

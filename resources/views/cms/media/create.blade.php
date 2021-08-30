@@ -73,7 +73,7 @@
             formData.append('name', document.getElementById('name').value);
             formData.append('link', document.getElementById('link').value);
 
-            axios.post('/socialMedia', formData
+            axios.post('/panel/cms/socialMedia', formData
             )
                 .then(function (response) {
                     console.log(response);

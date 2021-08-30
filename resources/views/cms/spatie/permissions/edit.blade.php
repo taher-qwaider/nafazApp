@@ -85,7 +85,7 @@
         }
         let redirectUrl = '{{ route('permissions.index') }}'
         console.log('URL: '+redirectUrl);
-        update('/panel/permissions/'+id, data, '');
+        update('/panel/cms/permissions/'+id, data, '');
     }
 </script>
 

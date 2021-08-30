@@ -34,7 +34,7 @@ class SliderController extends Controller
             return DataTables::of(slider::all())
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
-                    $actionBtn = "<a href='http://127.0.0.1:8000/sliders/$row->id/edit' class='edit btn btn-success btn-sm'>Edit</a> <button onclick='preformedDelete($row->id)' class='delete btn btn-danger btn-sm'>Delete</button>";
+                    $actionBtn = "<a href='http://127.0.0.1:8000/panel/cms/sliders/$row->id/edit' class='edit btn btn-success btn-sm'>Edit</a> <button onclick='preformedDelete($row->id)' class='delete btn btn-danger btn-sm'>Delete</button>";
                     return $actionBtn;
                 })
                 ->rawColumns(['action'])

@@ -34,7 +34,7 @@ class ServiceController extends Controller
             return DataTables::of(Service::all())
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
-                    $actionBtn = "<a href='http://127.0.0.1:8000/services/$row->id/edit' class='edit btn btn-success btn-sm'>Edit</a> <button onclick='preformedDelete($row->id)' class='delete btn btn-danger btn-sm'>Delete</button>";
+                    $actionBtn = "<a href='http://127.0.0.1:8000/panel/cms/services/$row->id/edit' class='edit btn btn-success btn-sm'>Edit</a> <button onclick='preformedDelete($row->id)' class='delete btn btn-danger btn-sm'>Delete</button>";
                     return $actionBtn;
                 })
                 ->rawColumns(['action'])

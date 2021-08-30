@@ -90,7 +90,7 @@
             formData.append('sub_title', document.getElementById('sub_title').value);
             formData.append('link', document.getElementById('link').value);
 
-            axios.post('/slider/'+id+'/update', formData
+            axios.post('/panel/cms/slider/'+id+'/update', formData
             )
                 .then(function (response) {
                     console.log(response);

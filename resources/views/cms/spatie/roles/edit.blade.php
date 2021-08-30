@@ -86,7 +86,7 @@
             name: document.getElementById('name').value,
         }
         let redirectUrl = '{{ route('roles.index') }}'
-        update('/panel/roles/'+id, data, redirectUrl);
+        update('/panel/cms/roles/'+id, data, redirectUrl);
     }
 </script>
 

@@ -3,7 +3,6 @@
 namespace App\Policies;
 
 use App\Models\Service;
-use App\Models\Servie;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;

@@ -85,7 +85,7 @@
             formData.append('name', document.getElementById('name').value);
             formData.append('body', document.getElementById('body').value);
 
-            axios.post('/services/'+id+'/update', formData
+            axios.post('/panel/cms/services/'+id+'/update', formData
             )
                 .then(function (response) {
                     console.log(response);

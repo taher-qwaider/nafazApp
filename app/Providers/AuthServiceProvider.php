@@ -6,6 +6,7 @@ use App\Models\Opinion;
 use App\Models\SocialMedia;
 use App\Policies\CategoryPolicy;
 use App\Policies\JobPolicy;
+use App\Policies\OpinionPolicy;
 use App\Policies\ServicePolicy;
 use App\Policies\SettingPolicy;
 use App\Policies\SliderPolicy;
@@ -26,7 +27,7 @@ class AuthServiceProvider extends ServiceProvider
         'App\Models\User' => UserPolicy::class,
         'App\Models\Category' => CategoryPolicy::class,
         'App\Models\Job' => JobPolicy::class,
-        'App\Models\Opinion' => Opinion::class,
+        'App\Models\Opinion' => OpinionPolicy::class,
         'App\Models\Service' => ServicePolicy::class,
         'App\Models\Setting' => SettingPolicy::class,
         'App\Models\Slider' => SliderPolicy::class,

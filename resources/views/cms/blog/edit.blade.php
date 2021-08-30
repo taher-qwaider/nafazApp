@@ -85,7 +85,7 @@
             formData.append('title', document.getElementById('title').value);
             formData.append('body', document.getElementById('body').value);
 
-            axios.post('/blogs/'+id+'/update', formData
+            axios.post('/panel/cms/blogs/'+id+'/update', formData
             )
                 .then(function (response) {
                     console.log(response);

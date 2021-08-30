@@ -101,7 +101,7 @@
         })
     }
     function destroy(id){
-        axios.delete('/sliders/'+id)
+        axios.delete('/panel/cms/sliders/'+id)
             .then(function (response) {
                 console.log(response.data.message);
                 responseAlert(response.data.message, true);

@@ -81,7 +81,7 @@
             formData.append('email', document.getElementById('email').value);
             formData.append('image', document.getElementById('image').files[0]);
 
-            axios.post('/panel/users/'+id+'/update', formData
+            axios.post('/panel/cms/users/'+id+'/update', formData
             )
                 .then(function (response) {
                     console.log(response);
