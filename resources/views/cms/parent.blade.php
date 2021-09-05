@@ -483,10 +483,18 @@
             @endcanany
             <li class="nav-header">إعدادات</li>
             <li class="nav-item">
+                <a href="{{ route('updateProfile', \Illuminate\Support\Facades\Auth::user()->id) }}" class="nav-link">
+                    <i class="fas fa-user-alt"></i>
+                    <p>
+                        الملف الشخصي
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a href="{{ route('logout') }}" class="nav-link">
                     <i class="nav-icon fas fa-sign-out-alt"></i>
                     <p>
-                        Logout
+                        تسجيل خروج
                     </p>
                 </a>
             </li>

@@ -30,6 +30,9 @@ Route::prefix('cms')->middleware('auth:user')->group(function (){
     Route::post('users/{user}/update', [\App\Http\Controllers\cms\UserController::class, 'update']);
     Route::get('user/list', [\App\Http\Controllers\cms\UserController::class, 'getUsers'])->name('user.list');
 
+    Route::get('user/{user}/updateProfile', [\App\Http\Controllers\cms\ProfileController::class, 'edit'])->name('updateProfile');
+    Route::post('user/{user}/updateProfile', [\App\Http\Controllers\cms\ProfileController::class, 'edit']);
+
     Route::get('user/{user}/roles', [\App\Http\Controllers\cms\UserRoleController::class, 'index']);
     Route::post('user/{user}/roles', [\App\Http\Controllers\cms\UserRoleController::class, 'store']);
 
