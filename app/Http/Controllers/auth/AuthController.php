@@ -33,6 +33,6 @@ class AuthController extends Controller
 
     public function logout(){
         Auth('user')->logout();
-        return redirect()->view('auth.login');
+        return redirect()->route('login');
     }
 }

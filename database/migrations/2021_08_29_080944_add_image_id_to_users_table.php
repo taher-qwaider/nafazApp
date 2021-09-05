@@ -15,8 +15,9 @@ class AddImageIdToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //
-            $table->foreignId('image_id');
+            $table->foreignId('image_id')->after('password');
             $table->foreign('image_id')->references('id')->on('users');
+            $table->string('device_key')->nullable()->after('image_id');
         });
     }
 

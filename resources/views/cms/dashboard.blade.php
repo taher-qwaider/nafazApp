@@ -21,10 +21,9 @@
               <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">CPU Traffic</span>
+                <span class="info-box-text">سلايدر</span>
                 <span class="info-box-number">
-                  10
-                  <small>%</small>
+                    {{ $slider_count }}
                 </span>
               </div>
               <!-- /.info-box-content -->
@@ -37,8 +36,8 @@
               <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Likes</span>
-                <span class="info-box-number">41,410</span>
+                <span class="info-box-text">أراء العملاء</span>
+                <span class="info-box-number">{{ $reviws }}</span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -54,8 +53,8 @@
               <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Sales</span>
-                <span class="info-box-number">760</span>
+                <span class="info-box-text">أعمال</span>
+                <span class="info-box-number">{{ $jobs }}</span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -67,8 +66,8 @@
               <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">New Members</span>
-                <span class="info-box-number">2,000</span>
+                <span class="info-box-text">المستخدمين</span>
+                <span class="info-box-number">{{ $users->count() }}</span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -79,138 +78,60 @@
         <!-- /.row -->
 
         <div class="row">
-          <div class="col-md-12">
-            <div class="card">
-              <div class="card-header">
-                <h5 class="card-title">Monthly Recap Report</h5>
+            <div class="col-md-10">
+                <!-- DIRECT CHAT -->
+                <div class="card direct-chat direct-chat-warning">
+                    <div class="card-header">
+                        <h3 class="card-title">Direct Chat</h3>
 
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-tool dropdown-toggle" data-toggle="dropdown">
-                      <i class="fas fa-wrench"></i>
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-right" role="menu">
-                      <a href="#" class="dropdown-item">Action</a>
-                      <a href="#" class="dropdown-item">Another action</a>
-                      <a href="#" class="dropdown-item">Something else here</a>
-                      <a class="dropdown-divider"></a>
-                      <a href="#" class="dropdown-item">Separated link</a>
+                        <div class="card-tools">
+                            <span data-toggle="tooltip" title="3 New Messages" class="badge badge-warning">3</span>
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-tool" data-toggle="tooltip" title="Contacts" data-widget="chat-pane-toggle">
+                                <i class="fas fa-comments"></i></button>
+                            <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>
+                            </button>
+                        </div>
                     </div>
-                  </div>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <!-- Conversations are loaded here -->
+                        <div class="direct-chat-messages" id="messages">
+
+                        </div>
+                        <div class="direct-chat-contacts">
+                            <ul class="contacts-list">
+                                @foreach($users as $user)
+                                    @if($user->id != \Illuminate\Support\Facades\Auth::user()->id)
+                                        <li>
+                                            <a href="#" onclick="reciverUser({{ $user->id }})">
+                                                <img class="contacts-list-img" src="{{ asset('storage/'. $user->image->path ) }}">
+                                                <div class="contacts-list-info">
+                                                    <span class="contacts-list-name">{{ $user->name }}</span>
+                                                </div>
+                                                <!-- /.contacts-list-info -->
+                                            </a>
+                                        </li>
+                                    @endif
+                                @endforeach
+                            </ul>
+                            <!-- /.contacts-list -->
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                        <div class="input-group">
+                            <input type="text" id="message" placeholder="أدخل الرسالة" class="form-control">
+                            <span class="input-group-append">
+                                <button type="button" id="sendMessage" class="btn btn-warning">إرسال</button>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- /.card-footer-->
                 </div>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-md-8">
-                    <p class="text-center">
-                      <strong>Sales: 1 Jan, 2014 - 30 Jul, 2014</strong>
-                    </p>
-
-                    <div class="chart">
-                      <!-- Sales Chart Canvas -->
-                      <canvas id="salesChart" height="180" style="height: 180px;"></canvas>
-                    </div>
-                    <!-- /.chart-responsive -->
-                  </div>
-                  <!-- /.col -->
-                  <div class="col-md-4">
-                    <p class="text-center">
-                      <strong>Goal Completion</strong>
-                    </p>
-
-                    <div class="progress-group">
-                      Add Products to Cart
-                      <span class="float-right"><b>160</b>/200</span>
-                      <div class="progress progress-sm">
-                        <div class="progress-bar bg-primary" style="width: 80%"></div>
-                      </div>
-                    </div>
-                    <!-- /.progress-group -->
-
-                    <div class="progress-group">
-                      Complete Purchase
-                      <span class="float-right"><b>310</b>/400</span>
-                      <div class="progress progress-sm">
-                        <div class="progress-bar bg-danger" style="width: 75%"></div>
-                      </div>
-                    </div>
-
-                    <!-- /.progress-group -->
-                    <div class="progress-group">
-                      <span class="progress-text">Visit Premium Page</span>
-                      <span class="float-right"><b>480</b>/800</span>
-                      <div class="progress progress-sm">
-                        <div class="progress-bar bg-success" style="width: 60%"></div>
-                      </div>
-                    </div>
-
-                    <!-- /.progress-group -->
-                    <div class="progress-group">
-                      Send Inquiries
-                      <span class="float-right"><b>250</b>/500</span>
-                      <div class="progress progress-sm">
-                        <div class="progress-bar bg-warning" style="width: 50%"></div>
-                      </div>
-                    </div>
-                    <!-- /.progress-group -->
-                  </div>
-                  <!-- /.col -->
-                </div>
-                <!-- /.row -->
-              </div>
-              <!-- ./card-body -->
-              <div class="card-footer">
-                <div class="row">
-                  <div class="col-sm-3 col-6">
-                    <div class="description-block border-right">
-                      <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 17%</span>
-                      <h5 class="description-header">$35,210.43</h5>
-                      <span class="description-text">TOTAL REVENUE</span>
-                    </div>
-                    <!-- /.description-block -->
-                  </div>
-                  <!-- /.col -->
-                  <div class="col-sm-3 col-6">
-                    <div class="description-block border-right">
-                      <span class="description-percentage text-warning"><i class="fas fa-caret-left"></i> 0%</span>
-                      <h5 class="description-header">$10,390.90</h5>
-                      <span class="description-text">TOTAL COST</span>
-                    </div>
-                    <!-- /.description-block -->
-                  </div>
-                  <!-- /.col -->
-                  <div class="col-sm-3 col-6">
-                    <div class="description-block border-right">
-                      <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 20%</span>
-                      <h5 class="description-header">$24,813.53</h5>
-                      <span class="description-text">TOTAL PROFIT</span>
-                    </div>
-                    <!-- /.description-block -->
-                  </div>
-                  <!-- /.col -->
-                  <div class="col-sm-3 col-6">
-                    <div class="description-block">
-                      <span class="description-percentage text-danger"><i class="fas fa-caret-down"></i> 18%</span>
-                      <h5 class="description-header">1200</h5>
-                      <span class="description-text">GOAL COMPLETIONS</span>
-                    </div>
-                    <!-- /.description-block -->
-                  </div>
-                </div>
-                <!-- /.row -->
-              </div>
-              <!-- /.card-footer -->
+                <!--/.direct-chat -->
             </div>
-            <!-- /.card -->
-          </div>
-          <!-- /.col -->
         </div>
         <!-- /.row -->
 
@@ -236,13 +157,62 @@
     <script src="{{ asset('cms/plugins/chart.js/Chart.min.js') }}"></script>
 
     <!-- PAGE SCRIPTS -->
-    <script src="{{ asset('cms/dist/js/pages/dashboard2.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase.js"></script>
+    <script>
+        var firebaseConfig = {
+            apiKey: 'AIzaSyC_qaCjN-Lrgq3NFwwA5DgTjOUTWUdYM18',
+            authDomain: 'nafazapp-b0544.firebaseapp.com',
+            databaseURL: 'https://nafazapp-b0544-default-rtdb.firebaseio.com/',
+            projectId: 'nafazapp-b0544',
+            storageBucket: 'nafazapp-b0544.appspot.com',
+            messagingSenderId: '847453852775',
+            appId: '1:847453852775:web:81021ec7072b68aa7b30c2',
+            measurementId: 'G-measurement-id',
+        };
+        firebase.initializeApp(firebaseConfig);
+        var database = firebase.database();
+        var lastIndex = 0;
+        var resiver_id = 0;
+        function reciverUser(id){
+            @foreach($users as $user)
+            var userId = {!! $user->id !!};
+            if (id == userId){
+                firebase.database().ref('/chats').on('value', function (snapshot) {
+                    document.getElementById('messages').innerHTML = "";
+                    var value = snapshot.val();
+                    $.each(value, function (index, value) {
+                       if (value['reciver_id'] == {!! $user->id !!} || value['sender_id'] == {!! $user->id !!}){
+                           if (value['sender_id'] == {{ \Illuminate\Support\Facades\Auth::user()->id }}) {
+                               $("#messages").append("<div class='direct-chat-msg'><div class='direct-chat-infos clearfix'><span class='direct-chat-name float-left'>"
+                                   +'{{ \Illuminate\Support\Facades\Auth::user()->name }}'+"</div> <img class='direct-chat-img' src='{{ asset('storage/'.\Illuminate\Support\Facades\Auth::user()->image->path) }}' alt='message user image'><div class='direct-chat-text'>"
+                                   +value['message']+"<div><div>");
+                               resiver_id = value['reciver_id'];
+                           }else{
+                               $("#messages").append("<div class='direct-chat-msg right'><div class='direct-chat-infos clearfix'><span class='direct-chat-name float-left'>"
+                                   +'{{ $user->name }}'+"</div> <img class='direct-chat-img' src='{{ asset('storage/'.$user->image->path) }}' alt='message user image'><div class='direct-chat-text'>"
+                                   +value['message']+"<div><div>");
+                           }
+                           lastIndex = index;
+                       }
+                    });
+                });
+            }
+            @endforeach
+        }
+
+        $('#sendMessage').on('click', function () {
+            var message = document.getElementById('message').value;
+            var sender_id = {!! \Illuminate\Support\Facades\Auth::user()->id !!};
+            var userID = lastIndex + 1;
+            firebase.database().ref('/chats/' + userID).set({
+                message: message,
+                sender_id: sender_id,
+                reciver_id: resiver_id,
+            });
+            // Reassign lastID value
+            lastIndex = userID;
+            $("#message").val("");
+        });
+    </script>
 @endsection
-
-
-
-
-
-
-
-

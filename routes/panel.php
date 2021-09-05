@@ -14,9 +14,17 @@ use Illuminate\Support\Facades\Route;
 */
 Route::prefix('cms')->middleware('auth:user')->group(function (){
     Route::get('/dashboard', function () {
-        return view('cms.dashboard');
+        $slider_count = \App\Models\Slider::all()->count();
+        $reviws = \App\Models\Opinion::all()->count();
+        $jobs = \App\Models\Job::all()->count();
+        $users = \App\Models\User::all();
+        return view('cms.dashboard', [
+            'slider_count' => $slider_count,
+            'jobs' => $jobs,
+            'reviws' => $reviws,
+            'users' => $users,
+        ]);
     })->name('dashboard');
-
 
     Route::resource('users', \App\Http\Controllers\cms\UserController::class);
     Route::post('users/{user}/update', [\App\Http\Controllers\cms\UserController::class, 'update']);
@@ -77,6 +85,9 @@ Route::prefix('cms')->middleware('auth:user')->group(function (){
 
     Route::get('cms/logout', [\App\Http\Controllers\auth\AuthController::class, 'logout'])->name('logout');
 
+    Route::get('/push-notificaiton', [\App\Http\Controllers\messages\WebNotificationController::class, 'index'])->name('push-notificaiton');
+    Route::post('/store-token', [\App\Http\Controllers\messages\WebNotificationController::class, 'storeToken'])->name('store.token');
+    Route::post('/send-web-notification', [\App\Http\Controllers\messages\WebNotificationController::class, 'sendWebNotification'])->name('send.web-notification');
 });
 
 Route::prefix('cms')->middleware('guest:user')->group(function(){
