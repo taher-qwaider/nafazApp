@@ -97,4 +97,6 @@ Route::prefix('cms')->middleware('guest:user')->group(function(){
 
     Route::get('login', [\App\Http\Controllers\auth\AuthController::class, 'getLoginView'])->name('login');
     Route::post('login', [\App\Http\Controllers\auth\AuthController::class, 'login']);
+
+//    Route::post('login/provider/callback', [\App\Http\Controllers\auth\AuthController::class, '']);
 });

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="ar">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -52,7 +52,7 @@
             <div class="icheck-primary">
               <input type="checkbox" id="remember">
               <label for="remember">
-                Remember Me
+                تذكرني
               </label>
             </div>
           </div>
@@ -95,7 +95,46 @@
 <script src="{{ asset('cms/dist/js/adminlte.min.js') }}"></script>
 <script src="{{ asset('cms/plugins/toastr/toastr.min.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
+{{--<script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-app.js"></script>--}}
+{{--<script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-auth.js"></script>--}}
+{{--<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>--}}
+{{--<script>--}}
+{{--    // Initialize Firebase--}}
+{{--    var firebaseConfig = {--}}
+{{--        apiKey: "AIzaSyC_qaCjN-Lrgq3NFwwA5DgTjOUTWUdYM18",--}}
+{{--        authDomain: "nafazapp-b0544.firebaseapp.com",--}}
+{{--        projectId: "nafazapp-b0544",--}}
+{{--        storageBucket: "nafazapp-b0544.appspot.com",--}}
+{{--        messagingSenderId: "847453852775",--}}
+{{--        appId: "1:847453852775:web:81021ec7072b68aa7b30c2"--}}
+{{--    };--}}
+{{--    firebase.initializeApp(config);--}}
+{{--    var facebookProvider = new firebase.auth.FacebookAuthProvider();--}}
+{{--    var googleProvider = new firebase.auth.GoogleAuthProvider();--}}
+{{--    var facebookCallbackLink = '/login/facebook/callback';--}}
+{{--    var googleCallbackLink = '/login/google/callback';--}}
+{{--    async function socialSignin(provider) {--}}
+{{--        var socialProvider = null;--}}
+{{--        if (provider == "facebook") {--}}
+{{--            socialProvider = facebookProvider;--}}
+{{--            document.getElementById('social-login-form').action = facebookCallbackLink;--}}
+{{--        } else if (provider == "google") {--}}
+{{--            socialProvider = googleProvider;--}}
+{{--            document.getElementById('social-login-form').action = googleCallbackLink;--}}
+{{--        } else {--}}
+{{--            return;--}}
+{{--        }--}}
+{{--        firebase.auth().signInWithPopup(socialProvider).then(function(result) {--}}
+{{--            result.user.getIdToken().then(function(result) {--}}
+{{--                document.getElementById('social-login-tokenId').value = result;--}}
+{{--                document.getElementById('social-login-form').submit();--}}
+{{--            });--}}
+{{--        }).catch(function(error) {--}}
+{{--            // do error handling--}}
+{{--            console.log(error);--}}
+{{--        });--}}
+{{--    }--}}
+{{--</script>--}}
 <script>
     function performLogin(){
         formData = new FormData();

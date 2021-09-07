@@ -82,9 +82,9 @@
                 <!-- DIRECT CHAT -->
                 <div class="card direct-chat direct-chat-warning">
                     <div class="card-header">
-                        <h3 class="card-title">Direct Chat</h3>
+                        <h3 class="card-title float-left" id="chat_box_title">الرسائل</h3>
 
-                        <div class="card-tools">
+                        <div class="card-tools float-right">
                             <span data-toggle="tooltip" title="3 New Messages" class="badge badge-warning">3</span>
                             <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
                             </button>
@@ -105,10 +105,18 @@
                                 @foreach($users as $user)
                                     @if($user->id != \Illuminate\Support\Facades\Auth::user()->id)
                                         <li>
-                                            <a href="#" onclick="reciverUser({{ $user->id }})">
-                                                <img class="contacts-list-img" src="{{ asset('storage/'. $user->image->path ) }}">
+                                            <a href="#" onclick="reciverUser({{ $user->id }})" id="{{ $user->id }}">
+                                                <img class="contacts-list-img float-left mr-2" src="{{ asset('storage/'. $user->image->path ) }}">
                                                 <div class="contacts-list-info">
-                                                    <span class="contacts-list-name">{{ $user->name }}</span>
+                                                    @if($user->isActive)
+                                                        <span class="contacts-list-name">{{ $user->name }}</span>
+                                                        <i class="fas fa-circle" style="color: blue;"></i>
+                                                        <span class="contacts-list-msg">متصل </span>
+                                                    @else
+                                                        <span class="contacts-list-name">{{ $user->name }}</span>
+                                                        <i class="fas fa-circle" style="color: darkred;"></i>
+                                                        <span class="contacts-list-msg">متصل </span>
+                                                    @endif
                                                 </div>
                                                 <!-- /.contacts-list-info -->
                                             </a>
@@ -172,47 +180,110 @@
         };
         firebase.initializeApp(firebaseConfig);
         var database = firebase.database();
-        var lastIndex = 0;
-        var resiver_id = 0;
+        var resiver_user = null;
+        var lastMessageId = null;
         function reciverUser(id){
             @foreach($users as $user)
-            var userId = {!! $user->id !!};
-            if (id == userId){
-                firebase.database().ref('/chats').on('value', function (snapshot) {
-                    document.getElementById('messages').innerHTML = "";
-                    var value = snapshot.val();
-                    $.each(value, function (index, value) {
-                       if (value['reciver_id'] == {!! $user->id !!} || value['sender_id'] == {!! $user->id !!}){
-                           if (value['sender_id'] == {{ \Illuminate\Support\Facades\Auth::user()->id }}) {
-                               $("#messages").append("<div class='direct-chat-msg'><div class='direct-chat-infos clearfix'><span class='direct-chat-name float-left'>"
-                                   +'{{ \Illuminate\Support\Facades\Auth::user()->name }}'+"</div> <img class='direct-chat-img' src='{{ asset('storage/'.\Illuminate\Support\Facades\Auth::user()->image->path) }}' alt='message user image'><div class='direct-chat-text'>"
-                                   +value['message']+"<div><div>");
-                               resiver_id = value['reciver_id'];
-                           }else{
-                               $("#messages").append("<div class='direct-chat-msg right'><div class='direct-chat-infos clearfix'><span class='direct-chat-name float-left'>"
-                                   +'{{ $user->name }}'+"</div> <img class='direct-chat-img' src='{{ asset('storage/'.$user->image->path) }}' alt='message user image'><div class='direct-chat-text'>"
-                                   +value['message']+"<div><div>");
+                var userId = {!! $user->id !!};
+                if (id == userId){
+                    document.getElementById('chat_box_title').innerHTML = '{!! $user->name !!}';
+                    resiver_user = {!! json_encode($user) !!};
+                    firebase.database().ref('chats').limitToLast(20).on('value', function (snapshot) {
+                        document.getElementById('messages').innerHTML = "";
+                        var value = snapshot.val();
+                        $.each(value, function (index, value) {
+                           if ((value['reciver_id'] === {!! $user->id !!} &&  value['sender_id'] === {!! \Illuminate\Support\Facades\Auth::user()->id !!})
+                               || (value['reciver_id'] === {!! \Illuminate\Support\Facades\Auth::user()->id !!} && value['sender_id'] === {!! $user->id !!}))
+                           {
+                               if (value['sender_id'] === {{ \Illuminate\Support\Facades\Auth::user()->id }}) {
+
+                                   if (value['reciverIsRead'] == 1){
+                                       $("#messages").append(getHtml('left', value['message'], null, null, true));
+                                   }else{
+                                       $("#messages").append(getHtml('left', value['message'], null, null, false));
+                                   }
+
+                               }else{
+                                   $("#messages").append(getHtml('right', value['message'], '{!! $user->name !!}', '{!! $user->image->path !!}'));
+                                   if (value['reciverIsRead'] == 0){
+                                       var data = {
+                                           reciverIsRead:1,
+                                           reciver_read_at:'{{ now() }}'
+                                       };
+                                       firebase.database().ref('chats/'+index).update(data);
+                                   }
+                               }
                            }
-                           lastIndex = index;
-                       }
+                           lastMessageId =index;
+                        });
+                        document.getElementById('messages').scrollTop =document.getElementById('messages').scrollHeight;
                     });
-                });
-            }
+                }
             @endforeach
         }
+        firebase.database().ref('chats/').limitToLast(1).on('child_added', function (snapshot) {
+            var value = snapshot.val();
+            if (resiver_user){
+                console.log(snapshot.key);
+                console.log(value);
+                if ((value['reciver_id'] === resiver_user.id &&  value['sender_id'] === {!! \Illuminate\Support\Facades\Auth::user()->id !!})
+                    || (value['reciver_id'] === {!! \Illuminate\Support\Facades\Auth::user()->id !!} && value['sender_id'] === resiver_user.id))
+                {
+
+                    document.getElementById('messages').scrollTop =document.getElementById('messages').scrollHeight;
+                    const music = new Audio('{{ asset('cms/audio/audio.ogg') }}');
+                    music.play();
+                }
+            }
+        });
 
         $('#sendMessage').on('click', function () {
-            var message = document.getElementById('message').value;
-            var sender_id = {!! \Illuminate\Support\Facades\Auth::user()->id !!};
-            var userID = lastIndex + 1;
-            firebase.database().ref('/chats/' + userID).set({
-                message: message,
-                sender_id: sender_id,
-                reciver_id: resiver_id,
-            });
-            // Reassign lastID value
-            lastIndex = userID;
+            if (resiver_user){
+                var message = document.getElementById('message').value;
+                var sender_id = {!! \Illuminate\Support\Facades\Auth::user()->id !!};
+                var sender_user_type = 'user';
+                var reciver_user_type = 'user';
+                var created_at = '{{ now() }}';
+                var lastIndex =0;
+                firebase.database().ref('chats').limitToLast(1).on('value', function(sna){
+                    var value = sna.val();
+                    $.each(value, function (index, value) {
+                        lastIndex = parseInt(index) + 1;
+                    })
+                });
+                firebase.database().ref('chats/'+lastIndex).set({
+                    message: message,
+                    sender_id: sender_id,
+                    reciver_id: resiver_user['id'],
+                    reciver_user_type:reciver_user_type,
+                    sender_user_type:sender_user_type,
+                    created_at:created_at,
+                    reciverIsRead:0,
+                    reciver_read_at:''
+                });
+            }
             $("#message").val("");
         });
+        function getHtml(dir, message, name=null, path=null, isRead=false){
+            var textHtml = "";
+            switch (dir) {
+                case 'right':
+                    textHtml +="<div class='direct-chat-msg right'><div class='direct-chat-infos clearfix'><span class='direct-chat-name float-left'>";
+                    textHtml += name+"</div> <img class='direct-chat-img' src='/storage/"+path+"' alt='message user image'><div class='direct-chat-text' style='width: fit-content;'>"
+                    +message+"</div></div>"
+                    break;
+                case 'left':
+                    textHtml +="<div class='direct-chat-msg'><div class='direct-chat-infos clearfix'>";
+                    if (isRead){
+                        textHtml += "<span class='direct-chat-timestamp float-right'><small style='color: #016bc6'><i class='fas fa-check-double'></i></small></span>";
+                    }else{
+                        textHtml += "<span class='direct-chat-timestamp float-right'><small><i class='fas fa-check'></i></small></span>";
+                    }
+                    textHtml += "</div>";
+                    textHtml +="<div class='direct-chat-text ml-0' style='float: left'>"+message+"</div></div>";
+                    break;
+            }
+            return textHtml;
+        }
     </script>
 @endsection
